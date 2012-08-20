@@ -82,7 +82,7 @@
     ("\\.less\\'" . less-css-mode)
     ("\\.lua\\'" . lua-mode)
     ("\\.coffee\\'" . coffee-mode)
-    ("\\.erl\\'" . erlang-mode)
+    ("\\.erl\\'" . erlang)
     ("\\.feature\\'" . feature-mode)))
 
 ;; markdown-mode doesn't have autoloads for the auto-mode-alist
