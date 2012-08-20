@@ -53,6 +53,7 @@ ELPA (or MELPA).")
 ;; add Prelude's directories to Emacs's `load-path'
 (add-to-list 'load-path prelude-modules-dir)
 (add-to-list 'load-path prelude-vendor-dir)
+(add-to-list 'load-path prelude-personal-dir)
 
 ;; the core stuff
 (require 'prelude-packages)
