@@ -39,8 +39,8 @@
 (global-set-key (kbd "C-x \\") 'align-regexp)
 
 ;; Font size
-(define-key global-map (kbd "C-+") 'text-scale-increase)
-(define-key global-map (kbd "C--") 'text-scale-decrease)
+;;(define-key global-map (kbd "C-+") 'text-scale-increase)
+;;(define-key global-map (kbd "C--") 'text-scale-decrease)
 
 ;; Window switching. (C-x o goes to the next window)
 (global-set-key (kbd "C-x O") (lambda ()
@@ -97,7 +97,7 @@
 
 (global-set-key (kbd "C-x g") 'magit-status)
 
-(global-set-key (kbd "C-=") 'er/expand-region)
+(global-set-key (kbd "C-@") 'er/expand-region)
 (global-set-key (kbd "C-c w") (make-repeatable-command 'er/expand-region))
 
 (provide 'prelude-global-keybindings)
