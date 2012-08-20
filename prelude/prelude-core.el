@@ -63,7 +63,7 @@ file of a buffer in an external program."
 (defun prelude-visit-term-buffer ()
   (interactive)
   (if (not (get-buffer "*ansi-term*"))
-      (ansi-term "/bin/bash")
+      (ansi-term (getenv "SHELL"))
     (switch-to-buffer "*ansi-term*")))
 
 (defun prelude-google ()
@@ -331,17 +331,6 @@ there's a region, all lines that region covers will be duplicated."
     (unless (or (eql buffer (current-buffer)) (not (buffer-file-name buffer)))
       (kill-buffer buffer))))
 
-(defun prelude-restore-arrow-keys ()
-  "Restores arrow keys navigation in buffers."
-  (interactive)
-  (global-set-key [up]      'previous-line)
-  (global-set-key [down]    'next-line)
-  (global-set-key [left]    'backward-char)
-  (global-set-key [right]   'forward-char)
-  (global-set-key [M-right] 'right-word)
-  (global-set-key [M-left]  'left-word)
-  (message "Arrow keys navigation in buffers in now allowed."))
-
 (require 'repeat)
 
 (defun make-repeatable-command (cmd)
@@ -365,6 +354,30 @@ and so on."
            (setq last-repeatable-command ',cmd)
            (repeat nil)))
   (intern (concat (symbol-name cmd) "-repeat")))
+
+(defvar prelude-tips
+  '("Press <C-c o> to open a file with external program."
+    "Press <C-c p f> to navigate a project's files with ido."
+    "Press <C-c h> to navigate a project in Helm."
+    "Press <C-c g> to search in Google."
+    "Press <C-c r> to rename the current buffer and file it's visiting."
+    "Press <C-c t> to open a terminal in Emacs."
+    "Explore the Prelude menu to find out about some of Prelude extensions to Emacs."
+    "Access the official Emacs manual by pressing <C-h r>."
+    "Visit WikEmacs at http://wikemacs.org to find out even more about Emacs."))
+
+(defun prelude-tip-of-the-day ()
+  (interactive)
+  (message (concat "Prelude tip: " (nth (random (length prelude-tips)) prelude-tips))))
+
+(defun prelude-eval-after-init (form)
+  "Add `(lambda () FORM)' to `after-init-hook'.
+
+    If Emacs has already finished initialization, also eval FORM immediately."
+  (let ((func (list 'lambda nil form)))
+    (add-hook 'after-init-hook func)
+    (when after-init-time
+      (eval form))))
 
 (provide 'prelude-core)
 ;;; prelude-core.el ends here
