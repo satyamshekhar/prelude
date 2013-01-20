@@ -5,7 +5,8 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-names-vector ["#3f3f3f" "#cc9393" "#7f9f7f" "#f0dfaf" "#8cd0d3" "#dc8cc3" "#93e0e3" "#dcdccc"])
  '(custom-safe-themes (quote ("7579f5fcf8308474126751ca3098a82b53e80701789bce8b92498f8899eaa031" default)))
- '(fci-rule-color "#383838"))
+ '(fci-rule-color "#383838")
+ '(standard-indent 2))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -15,10 +16,11 @@
 (set-default-font "Bitstream Vera Sans Mono-8")
 (set-face-attribute 'default nil :height 105)
 
-(setq erlang-root-dir "/usr/local/lib/erlang")
-(setq exec-path (cons "/usr/local/lib/erlang/bin" exec-path))
+(setq erlang-root-dir "/home/satyamshekhar/local/otp/lib/erlang")
+(setq exec-path (cons "/home/satyamshekhar/local/otp/bin" exec-path))
 
-(add-to-list 'load-path "/home/satyamshekhar/Projects/distel/elisp")
+(add-to-list 'load-path
+             "/home/satyamshekhar/Projects/distel/build/share/distel/elisp")
 
 ;; erlang
 (require 'distel)
@@ -72,7 +74,6 @@
 (global-set-key "\M-p" 'fastnav-sprint-forward)
 (global-set-key "\M-P" 'fastnav-sprint-backward)
 
-
 (set-register ?1 '(file . "/home/satyamshekhar/.emacs.d/personal/custom.el"))
 (set-register ?2 '(file . "/home/satyamshekhar/.emacs.d/personal/todo.org"))
 
@@ -97,3 +98,8 @@
 
 (require 'org-latex)
 (require 'org-beamer)
+
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(setq js2-mode-indent-level 2)
+(setq default-tab-width 2)
